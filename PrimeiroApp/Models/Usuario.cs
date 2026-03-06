@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PrimeiroApp.Models
+{
+    public class Usuario
+    {
+        [Display(Name = "Código")]
+        public int usuId { get; set; }
+
+        [Required(ErrorMessage = "O campo nome é obrigatório!")]
+        [Display(Name = "Nome")]
+        public string nomeUsu { get; set; }
+
+        [Display(Name = "Cargo")]
+        [Required(ErrorMessage = "Cargo é obrigatório!")]
+        public string cargo { get; set; }
+
+        [Display(Name = "Data de Nascimento")]
+        [Required(ErrorMessage = "Data de nascimento é obrigatória!")]
+        [DataType(DataType.DateTime)]
+        public DateTime dataNasc { get; set; }
+    }
+}
