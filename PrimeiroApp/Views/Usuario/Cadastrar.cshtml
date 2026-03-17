@@ -12,11 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Cadastrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UsuId" class="control-label"></label>
-                <input asp-for="UsuId" class="form-control" />
-                <span asp-validation-for="UsuId" class="text-danger"></span>
-            </div>
+            @* <div class="form-group">
+                <label asp-for="idUsu" class="control-label"></label>
+                <input asp-for="idUsu" class="form-control" />
+                <span asp-validation-for="idUsu" class="text-danger"></span>
+            </div> *@
             <div class="form-group">
                 <label asp-for="nomeUsu" class="control-label"></label>
                 <input asp-for="nomeUsu" class="form-control" />
@@ -27,13 +27,15 @@
                 <input asp-for="Cargo" class="form-control" />
                 <span asp-validation-for="Cargo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-5 form-group">
                 <label asp-for="DataNasc" class="control-label"></label>
-                <input asp-for="DataNasc" class="form-control" />
+                <input type="date" asp-for="DataNasc" class="form-control" />
                 <span asp-validation-for="DataNasc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>

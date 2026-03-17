@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using PrimeiroApp.Models;
 using PrimeiroApp.Repositories.Contracts;
+using System.Data;
 
 namespace PrimeiroApp.Repositories
 {
@@ -23,21 +24,48 @@ namespace PrimeiroApp.Repositories
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("insert into usuario(nomeUsu, Cargo, DataNasc)" +
+                MySqlCommand cmd = new MySqlCommand("insert into tbUsuario(nomeUsu, Cargo, DataNasc)" +
                                                 " values (@nomeUsu, @Cargo, @DataNasc )", conexao);
 
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
                 cmd.Parameters.Add("@Cargo", MySqlDbType.VarChar).Value = usuario.Cargo;
-                cmd.Parameters.Add("@DataNasc", MySqlDbType.VarChar).Value = usuario.DataNasc;
+                cmd.Parameters.Add("@DataNasc", MySqlDbType.Date).Value = usuario.DataNasc;
 
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
         }
 
-        public IEnumerable<Usuario> Cadastro()
+        public IEnumerable<Usuario> ObterUsuarios()
         {
-            throw new NotImplementedException();
+            List<Usuario> UsuarioList = new List<Usuario>();
+            using(var conexao = new MySqlConnection(_conexaoMySql))
+            {
+                conexao.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from tbUsuario", conexao);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                conexao.Clone();
+
+                foreach(DataRow dr in dt.Rows)
+                {
+                    UsuarioList.Add(
+                        new Usuario
+                        {
+                            idUsu = Convert.ToInt32(dr["IdUsu"]),
+                            nomeUsu = (string)dr["nomeUsu"],
+                            Cargo = (string)dr["Cargo"],
+                            DataNasc = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataNasc"]))
+                        }
+                    );
+                }
+
+                return UsuarioList;
+            }
         }
 
         public void Excluir(int id)

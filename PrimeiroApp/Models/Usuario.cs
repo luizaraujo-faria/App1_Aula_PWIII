@@ -5,7 +5,7 @@ namespace PrimeiroApp.Models
     public class Usuario
     {
         [Display(Name = "Código")]
-        public int UsuId { get; set; }
+        public int idUsu { get; set; }
 
         [Required(ErrorMessage = "O campo nome é obrigatório!")]
         [Display(Name = "Nome")]
@@ -17,7 +17,7 @@ namespace PrimeiroApp.Models
 
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Data de nascimento é obrigatória!")]
-        [DataType(DataType.DateTime)]
-        public DateTime DataNasc { get; set; }
+        [DataType(DataType.Date)]
+        public DateOnly DataNasc { get; set; }
     }
 }

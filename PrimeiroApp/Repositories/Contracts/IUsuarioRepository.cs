@@ -4,7 +4,7 @@ namespace PrimeiroApp.Repositories.Contracts
 {
     public interface IUsuarioRepository
     {
-        IEnumerable<Usuario> Cadastro();
+        IEnumerable<Usuario> ObterUsuarios();
         void Cadastrar(Usuario usuario);
         void Atualizar(Usuario usuario);
         Usuario ObterUsuario(int id);
