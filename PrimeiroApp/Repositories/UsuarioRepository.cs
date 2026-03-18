@@ -51,7 +51,7 @@ namespace PrimeiroApp.Repositories
 
                 conexao.Clone();
 
-                foreach(DataRow dr in dt.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
                     UsuarioList.Add(
                         new Usuario
