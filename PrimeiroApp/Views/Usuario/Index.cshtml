@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PrimeiroApp.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.idUsu)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.nomeUsu)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Cargo)</th>
+            <th scope ="col">@Html.DisplayNameFor(model => model.DataNasc)</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.idUsu)</td>
+            <td>@Html.DisplayFor(modelItem => item.nomeUsu)</td>
+            <td>@Html.DisplayFor(modelItem => item.Cargo)</td>
+            <td>@Html.DisplayFor(modelItem => item.DataNasc)</td>
+            <td>
+                <button type="button" class="btn btn-warning">
+                        @Html.ActionLink("Edit", "Edit", new { id=item.idUsu }) |
+                </button>
+
+                <button type="button" class="btn btn-secondary">
+                        @Html.ActionLink("Details", "Details", new { id=item.idUsu }) |
+                </button>
+
+                <button type="button" class="btn btn-danger">
+                        @Html.ActionLink("Delete", "Delete", new { id=item.idUsu })
+                </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
